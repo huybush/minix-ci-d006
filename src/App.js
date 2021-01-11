@@ -1,25 +1,43 @@
-import logo from './logo.svg';
+import { Component } from "react";
 import './App.css';
+import Header from "./components/Header";
+import { SearchBar } from "./components/SearchBar";
+import { EmojiList } from "./components/EmojiList";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+class App extends Component{
+
+  constructor(props){
+    super(props)
+    this.state = {
+      kw:''
+    }
+    this.handleChange = this.handleChange.bind(this)
+  }
+
+    handleChange(event){
+      // console.log(this.state)
+      // console.log(event.target.value)
+      
+
+      this.setState({kw:event.target.value})
+      console.log(this.state)
+  }
+  render(){
+    
+
+    return (
+      <div className="App">
+        <Header/>
+        <SearchBar kw = {this.state.kw} change = {this.handleChange}/>
+        <EmojiList/>
+      </div>
+    );
+
+  }
 }
+
+  
+
 
 export default App;
